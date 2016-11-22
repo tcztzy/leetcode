@@ -15,3 +15,26 @@ class Solution(object):
         for i in range(len(nums)):
             if target-nums[i] in nums[i+1:]:
                 return [i, nums.index(target-nums[i], i+1)]
+
+    def twoSum3(self, nums, target):
+        """425ms"""
+        m = []
+        for i in range(len(nums)):
+            if target-nums[i] in m:
+                return [nums.index(target-nums[i]), i]
+            m.append(nums[i])
+
+    def twoSum4(self, nums, target):
+        """554ms"""
+        for i in range(len(nums)):
+            if target-nums[i] in nums[:i]:
+                return [nums.index(target-nums[i]), i]
+
+    def twoSum5(self, nums, target):
+        """455ms"""
+        m = []
+        for i in range(len(nums)):
+            complement = target-nums[i]
+            if complement in m:
+                return [nums.index(complement), i]
+            m.append(nums[i])
