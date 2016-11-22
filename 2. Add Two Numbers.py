@@ -31,3 +31,18 @@ class Solution(object):
             t.next = ListNode(int(d))
             t = t.next
         return l
+
+    def addTwoNumbers2(self, l1, l2):
+        p, q, carry, dummy = l1, l2, 0, ListNode(0)
+        curr = dummy
+        while p is not None or q is not None:
+            x = p.val if p else 0
+            y = q.val if q else 0
+            carry, s = divmod(x+y+carry, 10)
+            curr.next = ListNode(s)
+            curr = curr.next
+            p = p.next if p else None
+            q = q.next if q else None
+        if carry != 0:
+            curr.next = ListNode(carry)
+        return dummy.next
